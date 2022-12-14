@@ -1,0 +1,24 @@
+{% extends 'main\Base.html' %}
+
+{% block title %} Парсер {% endblock %}
+
+{% block content %} 
+<div class="content model">
+    <h1>Парсер</h1>
+    <p>Здесь вы можете записать, сколько страниц хотите пропарсить. После этого останется только нажать кнопку "Обработать" и подождать результата.</p>
+
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="number" name="Count">
+        <button type="submit">Обработать</button>
+    </form> 
+
+    {% for el in answer %}
+        {% if el.name != '' %}
+            <p>Название: '{{el.name}}'; Цена: {{el.price_y_dis}}</p>
+        {% endif %}
+    {% endfor %}
+
+</div>
+{% endblock %}
